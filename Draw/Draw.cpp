@@ -749,7 +749,7 @@ void InitializeMyStuff()
 
   AddLabel(DEFAULT_BUTTON_MARGIN_X,
            gScreenY - n * DEFAULT_BUTTON_MARGIN_Y -
-             (zn - 1) * DEFAULT_BUTTON_HEIGHT,
+             (n - 1) * DEFAULT_BUTTON_HEIGHT,
            DEFAULT_BUTTON_MARGIN_X + DEFAULT_BUTTON_WIDTH,
            gScreenY - n * DEFAULT_BUTTON_MARGIN_Y -
              n * DEFAULT_BUTTON_HEIGHT,
