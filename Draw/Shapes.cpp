@@ -1,13 +1,13 @@
-//*****************************************************************************
-//    Filename: Shapes.cpp
-//
-//      Author: David C. Drake (http://www.davidcdrake.com), with assistance
-//              from Bart Stander (http://cit.dixie.edu/faculty/stander.php).
-//
-// Description: Method definitions for the following shape-related classes:
-//              Point2D, Shape, Line, BezierCurve, Rectangle, Triangle,
-//              Pentagon, Circle, Button, Slider, and Label.
-//*****************************************************************************
+/******************************************************************************
+   Filename: Shapes.cpp
+
+     Author: David C. Drake (http://davidcdrake.com), with initial assistance
+             from Dr. Barton Stander (http://cit.dixie.edu/faculty/stander.php)
+
+Description: Method definitions for the following shape-related classes:
+             Point2D, Shape, Line, BezierCurve, Rectangle, Triangle, Pentagon,
+             Circle, Button, Slider, and Label.
+******************************************************************************/
 
 #include "Shapes.h"
 

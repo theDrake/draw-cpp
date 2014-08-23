@@ -1,12 +1,12 @@
-//*****************************************************************************
-//    Filename: Draw.cpp
-//
-//      Author: David C. Drake (http://www.davidcdrake.com), with assistance
-//              from Bart Stander (http://cit.dixie.edu/faculty/stander.php).
-//
-// Description: Main C++ file for "Draw": a simple drawing program for
-//              experimenting with OpenGL, Bezier curves, etc.
-//*****************************************************************************
+/******************************************************************************
+   Filename: Draw.cpp
+
+     Author: David C. Drake (http://davidcdrake.com), with initial assistance
+             from Dr. Barton Stander (http://cit.dixie.edu/faculty/stander.php)
+
+Description: Main C++ file for "Draw," a simple drawing program for
+             experimenting with OpenGL, Bezier curves, etc.
+******************************************************************************/
 
 #include "Draw.h"
 #include "Shapes.h"
