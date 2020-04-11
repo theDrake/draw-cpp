@@ -1,7 +1,7 @@
 /******************************************************************************
    Filename: Shapes.cpp
 
-     Author: David C. Drake (http://davidcdrake.com)
+     Author: David C. Drake (https://davidcdrake.com)
 
 Description: Method definitions for the following shape-related classes:
              Point2D, Shape, Line, BezierCurve, Rectangle, Triangle, Pentagon,

@@ -1,7 +1,7 @@
 /******************************************************************************
    Filename: Draw.h
 
-     Author: David C. Drake (http://davidcdrake.com)
+     Author: David C. Drake (https://davidcdrake.com)
 
 Description: Header file for "Draw," a simple drawing program for experimenting
              with OpenGL, Bezier curves, etc.
