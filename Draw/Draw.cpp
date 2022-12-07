@@ -1,11 +1,11 @@
-/******************************************************************************
+/*******************************************************************************
    Filename: Draw.cpp
 
      Author: David C. Drake (https://davidcdrake.com)
 
 Description: Main C++ file for "Draw," a simple drawing program for
              experimenting with OpenGL, Bezier curves, etc.
-******************************************************************************/
+*******************************************************************************/
 
 #include "Draw.h"
 #include "Shapes.h"
@@ -80,19 +80,17 @@ void DrawText(double x, double y, char *string) {
 void display(void) {
   glClear(GL_COLOR_BUFFER_BIT);
 
-  // Draw all user-created shapes:
+  // draw user-created shapes and points
   vector<Shape *>::iterator shapeIter;
   for (shapeIter = gShapes.begin(); shapeIter < gShapes.end(); ++shapeIter) {
     (*shapeIter)->Draw();
   }
-
-  // Draw all user-created points that are not yet part of a shape:
   vector<Point2D *>::iterator pointIter;
   for (pointIter = gPoints.begin(); pointIter < gPoints.end(); ++pointIter) {
     (*pointIter)->Draw();
   }
 
-  // Draw the control panel on the left side of the screen:
+  // draw control panel on left side of screen
   glColor3d(CONTROL_PANEL_RED, CONTROL_PANEL_GREEN, CONTROL_PANEL_BLUE);
   DrawRectangle(0, 0, CONTROL_PANEL_WIDTH, gScreenY);
   vector<Label *>::iterator labelIter;
@@ -111,7 +109,7 @@ void display(void) {
 
 void keyboard(unsigned char c, int x, int y) {
   switch (c) {
-    case 27:  // Escape character.
+    case 27:  // esc
       exit(0);
       break;
     case 'L':
@@ -139,21 +137,21 @@ void keyboard(unsigned char c, int x, int y) {
       SetShapeMode(CIRCLE);
       break;
     default:
-      return;  // If insignificant, return without calling glutPostRedisplay().
+      return;
   }
 
   glutPostRedisplay();
 }
 
 void reshape(int w, int h) {
-  // Reset our global variables to the new width and height:
+  // reset global variables to the new width and height
   gScreenX = w;
   gScreenY = h;
 
-  // Set the pixel resolution of the final picture (screen coordinates):
+  // set pixel resolution of final picture (screen coordinates)
   glViewport(0, 0, w, h);
 
-  // Set the projection mode to 2D orthographic and set world coordinates:
+  // set projection mode to 2D orthographic and set world coordinates
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluOrtho2D(0, w, 0, h);
@@ -163,11 +161,11 @@ void reshape(int w, int h) {
 void mouse(int mouse_button, int state, int x, int y) {
   y = gScreenY - y;
 
-  // Left mouse button:
+  // left mouse button
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-    // Left-clicking within the canvas:
+    // left-click within canvas
     if (x > CONTROL_PANEL_WIDTH) {
-      // If not already dragging and a point's clicked, select it for dragging:
+      // if not dragging and a point's clicked, select it for dragging
       if (!gLeftDragging) {
         vector<Point2D *>::iterator pointIter;
         for (pointIter = gPoints.begin();
@@ -200,8 +198,7 @@ void mouse(int mouse_button, int state, int x, int y) {
           }
         }
       }
-
-      // If a point wasn't clicked, a new point should be created:
+      // if a point wasn't clicked, create a new point
       if (!gLeftDragging) {
         if (gPoints.empty()) {
           DeselectAllShapes();
@@ -258,8 +255,7 @@ void mouse(int mouse_button, int state, int x, int y) {
           break;
         }
       }
-
-    // Left-clicking within the control panel:
+    // left-click within control panel
     } else {
       vector<Button *>::iterator buttonIter;
       for (buttonIter = gButtons.begin();
@@ -296,7 +292,7 @@ void mouse(int mouse_button, int state, int x, int y) {
                 break;
               }
           } else if ((*buttonIter)->IsButtonType(SAVE_BUTTON)) {
-            ofstream fout("save.txt");
+            ofstream fout("savefile");
             vector<Shape *>::iterator shapeIter;
             for (shapeIter = gShapes.begin();
                  shapeIter < gShapes.end();
@@ -324,15 +320,15 @@ void mouse(int mouse_button, int state, int x, int y) {
             }
             fout.close();
           } else if ((*buttonIter)->IsButtonType(LOAD_BUTTON)) {
-            ifstream fin("save.txt");
+            ifstream fin("savefile");
 
-            // First, clear the canvas:
+            // clear canvas
             if (fin.good()) {
               gShapes.clear();
               gPoints.clear();
             }
 
-            // Now read input data from the save file:
+            // read input from save file
             int currentShapeType;
             double r, g, b;
             bool filled;
@@ -429,7 +425,7 @@ void mouse(int mouse_button, int state, int x, int y) {
     }
   }
 
-  // When left button is released, ensure no point is selected for dragging:
+  // when left button's released, ensure no point is selected for dragging
   if (mouse_button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
     gLeftDragging = false;
     gSelectedPoint = NULL;
@@ -441,11 +437,11 @@ void mouse(int mouse_button, int state, int x, int y) {
     }
   }
 
-  // Right mouse button:
+  // right mouse button
   if (mouse_button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
-    // Right-clicking within the canvas:
+    // right-click within canvas
     if (x > CONTROL_PANEL_WIDTH) {
-      // If not dragging and a point's been clicked, select it for dragging:
+      // if not dragging and a point's clicked, select it for dragging
       if (!gRightDragging) {
         vector<Point2D *>::iterator pointIter;
         for (pointIter = gPoints.begin();
@@ -481,7 +477,7 @@ void mouse(int mouse_button, int state, int x, int y) {
     }
   }
 
-  // When right button is released, ensure no point is selected for dragging:
+  // when right button's released, ensure no point is selected for dragging
   if (mouse_button == GLUT_RIGHT_BUTTON && state == GLUT_UP) {
     gRightDragging = false;
     gSelectedPoint = NULL;
@@ -493,7 +489,7 @@ void mouse(int mouse_button, int state, int x, int y) {
     }
   }
 
-  // Middle mouse button:
+  // middle mouse button
   if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_DOWN) {}
   if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_UP) {}
 
@@ -576,7 +572,7 @@ void AddLabel(const double x1, const double y1,
 }
 
 void InitializeMyStuff() {
-  int n = 1;  // Serves as each button's y-offset multiplier.
+  int n = 1;  // serves as each button's y-offset multiplier
 
   gShapes.clear();
   gPoints.clear();
@@ -586,8 +582,7 @@ void InitializeMyStuff() {
   gGreen = DEFAULT_GREEN;
   gBlue = DEFAULT_BLUE;
 
-  // Drawing mode label and buttons:
-
+  // drawing mode label and buttons
   AddLabel(DEFAULT_BUTTON_MARGIN_X,
            gScreenY - n * DEFAULT_BUTTON_MARGIN_Y -
              (n - 1) * DEFAULT_BUTTON_HEIGHT,
@@ -678,8 +673,7 @@ void InitializeMyStuff() {
             CIRCLE);
   ++n;
 
-  // Color label and buttons:
-
+  // color label and buttons
   ++n;
   AddLabel(DEFAULT_BUTTON_MARGIN_X,
            gScreenY - n * DEFAULT_BUTTON_MARGIN_Y -
@@ -937,8 +931,7 @@ void InitializeMyStuff() {
   ++n;
   */
 
-  // Additional buttons:
-
+  // additional buttons
   ++n;
   AddButton(DEFAULT_BUTTON_MARGIN_X,
             gScreenY - n * DEFAULT_BUTTON_MARGIN_Y -
@@ -1033,7 +1026,7 @@ void InitializeMyStuff() {
             NONE);
   ++n;
 
-  // Build right-click menu:
+  // right-click menu
   /*int subMenu = glutCreateMenu(colorMenu);
   glutAddMenuEntry("Red", 1);
   glutAddMenuEntry("Orange", 2);
@@ -1052,7 +1045,7 @@ void InitializeMyStuff() {
   glutAddSubMenu("Set Color", subMenu);
   glutAttachMenu(GLUT_RIGHT_BUTTON);*/
 
-  // Start with a Bezier curve on the canvas:
+  // start with a Bezier curve on canvas
   /*gPoints.push_back(new Point2D(300, 300));
   gPoints.push_back(new Point2D(400, 400));
   gPoints.push_back(new Point2D(500, 200));
@@ -1161,7 +1154,7 @@ int main(int argc, char **argv) {
   glutReshapeFunc(reshape);
   glutMouseFunc(mouse);
   glutMotionFunc(motion);
-  glClearColor(1, 1, 1, 0);  // Background color.
+  glClearColor(1, 1, 1, 0);  // background color
   InitializeMyStuff();
   glutMainLoop();
 

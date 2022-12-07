@@ -1,4 +1,4 @@
-/******************************************************************************
+/*******************************************************************************
    Filename: Shapes.h
 
      Author: David C. Drake (https://davidcdrake.com)
@@ -6,7 +6,7 @@
 Description: Header file for the following shape-related classes: Point2D,
              Shape, Line, BezierCurve, Rectangle, Triangle, Pentagon, Circle,
              Button, Slider, and Label.
-******************************************************************************/
+*******************************************************************************/
 
 #ifndef SHAPES_H_
 #define SHAPES_H_

@@ -1,11 +1,11 @@
-/******************************************************************************
+/*******************************************************************************
    Filename: Draw.h
 
      Author: David C. Drake (https://davidcdrake.com)
 
 Description: Header file for "Draw," a simple drawing program for experimenting
              with OpenGL, Bezier curves, etc.
-******************************************************************************/
+*******************************************************************************/
 
 #ifndef DRAW_H_
 #define DRAW_H_
@@ -15,7 +15,7 @@ Description: Header file for "Draw," a simple drawing program for experimenting
 #include <cmath>
 #include <cstring>
 #include <vector>
-#include "glut.h"
+#include <GL/glut.h>
 
 using namespace std;
 

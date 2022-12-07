@@ -1,4 +1,4 @@
-/******************************************************************************
+/*******************************************************************************
    Filename: Shapes.cpp
 
      Author: David C. Drake (https://davidcdrake.com)
@@ -6,7 +6,7 @@
 Description: Method definitions for the following shape-related classes:
              Point2D, Shape, Line, BezierCurve, Rectangle, Triangle, Pentagon,
              Circle, Button, Slider, and Label.
-******************************************************************************/
+*******************************************************************************/
 
 #include "Shapes.h"
 
@@ -44,7 +44,7 @@ Shape::Shape(vector<Point2D *> points,
   SetColor(r, g, b);
   mShapeType = NONE;
   mFilled = filled;
-  mSelected = true;  // Shapes are "selected" by default when they're created.
+  mSelected = true;  // shapes are "selected" by default when created
 }
 
 Shape::~Shape() {
@@ -165,7 +165,7 @@ Rectangle::Rectangle(vector<Point2D *> points,
     cerr << "Error: " << mVertices.size()
          << " vertices passed to Rectangle constructor." << endl;
 
-  // Add the other two corner points, if necessary, to allow resizing:
+  // add the other two corner points for more convenient moving/resizing
   if (mVertices.size() == 2) {
     mVertices.push_back(new Point2D(mVertices[0]->GetX(),
                                     mVertices[1]->GetY()));
@@ -311,7 +311,7 @@ Circle::Circle(vector<Point2D *> points,
     cerr << "Error: " << mVertices.size()
          << " vertices passed to Circle constructor." << endl;
   } else {
-    // Use the second vertex to determine the radius:
+    // use 2nd vertex to determine radius
     mRadius = sqrt((mVertices[0]->GetX() - mVertices[1]->GetX()) *
                    (mVertices[0]->GetX() - mVertices[1]->GetX()) +
                    (mVertices[0]->GetY() - mVertices[1]->GetY()) *
@@ -356,7 +356,7 @@ Button::Button(vector<Point2D *> points,
 }
 
 void Button::Draw() {
-  // Draw a black outline if the button is currently selected:
+  // draw black outline if button is selected
   if (mSelected) {
     glColor3d(0, 0, 0);
     double x1 = mVertices[0]->GetX() < mVertices[1]->GetX() ?
@@ -373,7 +373,7 @@ void Button::Draw() {
                   y2 - BUTTON_OUTLINE_THICKNESS);
   }
 
-  // Draw the button (using an alternative color if currently pressed/clicked):
+  // draw button
   if (mPressed) {
     glColor3d(mRed - 0.5, mGreen - 0.5, mBlue - 0.5);
   } else {
@@ -382,7 +382,7 @@ void Button::Draw() {
   DrawRectangle(mVertices[0]->GetX(), mVertices[0]->GetY(),
                 mVertices[1]->GetX(), mVertices[1]->GetY());
 
-  // Draw the button's text, if any (alternative color if pressed/clicked):
+  // draw button text
   if (mPressed) {
     glColor3d(1.0, 1.0, 1.0);
   } else {
@@ -416,12 +416,12 @@ Slider::Slider(vector<Point2D *> points,
 }
 
 void Slider::Draw() {
-  // Draw a black background rectangle:
+  // draw background
   glColor3d(0, 0, 0);
   DrawRectangle(mVertices[0]->GetX(), mVertices[0]->GetY(),
                 mVertices[1]->GetX(), mVertices[1]->GetY());
 
-  // Draw the slider rectangle:
+  // draw slider
   glColor3d(mRed, mGreen, mBlue);
   DrawRectangle(mVertices[0]->GetX(), mVertices[0]->GetY(),
                 mSliderLength + mLeft, mVertices[1]->GetY());
@@ -437,12 +437,12 @@ Label::Label(vector<Point2D *> points,
   : Button(points, r, g, b, text, LABEL, NONE) {}
 
 void Label::Draw() {
-  // Draw the background rectangle:
+  // draw background
   glColor3d(mRed, mGreen, mBlue);
   DrawRectangle(mVertices[0]->GetX(), mVertices[0]->GetY(),
                 mVertices[1]->GetX(), mVertices[1]->GetY());
 
-  // Draw the label's text:
+  // draw label text
   glColor3d(0, 0, 0);
   DrawText((mVertices[0]->GetX() < mVertices[1]->GetX() ?
               mVertices[0]->GetX() : mVertices[1]->GetX()) +
