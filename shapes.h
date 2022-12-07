@@ -11,7 +11,7 @@ Description: Header file for the following shape-related classes: Point2D,
 #ifndef SHAPES_H_
 #define SHAPES_H_
 
-#include "Draw.h"
+#include "draw.h"
 
 enum ButtonType {
   MODE_BUTTON,

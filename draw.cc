@@ -7,8 +7,8 @@ Description: Main C++ file for "Draw," a simple drawing program for
              experimenting with OpenGL, Bezier curves, etc.
 *******************************************************************************/
 
-#include "Draw.h"
-#include "Shapes.h"
+#include "draw.h"
+#include "shapes.h"
 
 double gScreenX = 900;
 double gScreenY = 600;

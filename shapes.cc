@@ -8,7 +8,7 @@ Description: Method definitions for the following shape-related classes:
              Circle, Button, Slider, and Label.
 *******************************************************************************/
 
-#include "Shapes.h"
+#include "shapes.h"
 
 //
 // Point2D methods:
