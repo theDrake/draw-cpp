@@ -1,5 +1,5 @@
 /*******************************************************************************
-   Filename: Shapes.h
+   Filename: shapes.h
 
      Author: David C. Drake (https://davidcdrake.com)
 
