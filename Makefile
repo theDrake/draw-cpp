@@ -1,6 +1,6 @@
 all: draw
 
-draw: src
+draw: src/*
 	g++ src/*.cc -lglut -lGL -lGLU -o draw
 
 .PHONY: all clean
